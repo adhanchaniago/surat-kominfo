@@ -71,6 +71,9 @@
                     </div>
                     <!-- Secondary Nav END -->
                 </div>
+                <div class="col s2">
+                    <a class="btn-large deep-orange waves-effect waves-light right" href="?page=ctk_tsk" target="_blank"><i class="material-icons">print</i> PRINT</a>
+                </div>
                 <!-- Row END -->
 
                 <?php

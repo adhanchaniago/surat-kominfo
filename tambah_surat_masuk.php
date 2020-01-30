@@ -47,10 +47,10 @@
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
-                                if(!preg_match("/^[a-zA-Z0-9., ]*$/", $nkode)){
-                                    $_SESSION['kode'] = 'Form Kode Klasifikasi hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,)';
-                                    echo '<script language="javascript">window.history.back();</script>';
-                                } else {
+                                // if(!preg_match("/^[a-zA-Z0-9., ]*$/", $nkode)){
+                                //     $_SESSION['kode'] = 'Form Kode Klasifikasi hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,)';
+                                //     echo '<script language="javascript">window.history.back();</script>';
+                                // } else {
 
                                     if(!preg_match("/^[a-zA-Z0-9., -]*$/", $indeks)){
                                         $_SESSION['indeks'] = 'Form Indeks hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,) dan minus (-)';
@@ -137,7 +137,7 @@
                                             }
                                         }
                                     }
-                                }
+                                // }
                             }
                         }
                     }
@@ -228,7 +228,7 @@
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">bookmark</i>
-                            <input id="kode" type="text" class="validate" name="kode" required>
+                            <!-- <input id="kode" type="text" class="validate" name="kode" required>
                                 <?php
                                     if(isset($_SESSION['kode'])){
                                         $kode = $_SESSION['kode'];
@@ -236,7 +236,16 @@
                                         unset($_SESSION['kode']);
                                     }
                                 ?>
-                            <label for="kode">Kode Klasifikasi</label>
+                            <label for="kode">Kode Klasifikasi</label> -->
+                            <select id="kode" class="validate" name="kode">
+                                    <option value="">Kode Klasifikasi</option>
+                                    <?php 
+                                        $s = mysqli_query($config, "SELECT kode, nama FROM tbl_klasifikasi");
+                                        while ($row = mysqli_fetch_array($s)) {
+                                            echo '<option value="'.$row['kode'].'">'.$row['kode'].' | '.$row['nama'].'</option>';
+                                        }
+                                    ?>
+                            </select>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">place</i>
@@ -252,8 +261,24 @@
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">storage</i>
-                            <input id="indeks" type="text" class="validate" name="indeks" required>
                                 <?php
+                                echo '<input id="indeks" type="text" class="validate" name="indeks" value="';
+                                $sqli = mysqli_query($config, "SELECT indeks FROM tbl_surat_masuk");
+                                $index = "1";
+                                if (mysqli_num_rows($sqli) == 0){
+                                    echo $index;
+                                }
+
+                                $hasil = mysqli_num_rows($sqli);
+                                $hitung = 0;
+                                while(list($index) = mysqli_fetch_array($sqli)){
+                                    if (++$hitung == $hasil) {
+                                        $index++;
+                                        echo $index;
+                                    }
+                                }
+                                echo '" required>';
+
                                     if(isset($_SESSION['indeks'])){
                                         $indeks = $_SESSION['indeks'];
                                         echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$indeks.'</div>';

@@ -10,13 +10,13 @@
 
             //validasi form kosong
             if($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['tujuan'] == "" || $_REQUEST['isi'] == ""
-                || $_REQUEST['kode'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
+                || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
                 $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
                 echo '<script language="javascript">window.history.back();</script>';
             } else {
 
                 $no_agenda = $_REQUEST['no_agenda'];
-                $no_surat = $_REQUEST['no_surat'];
+                $no_surat = $_REQUEST['no_surat'].'/SEKRT/DISKOMINFO/'.date('Y');
                 $tujuan = $_REQUEST['tujuan'];
                 $isi = $_REQUEST['isi'];
                 $kode = substr($_REQUEST['kode'],0,30);
@@ -45,11 +45,6 @@
                                 $_SESSION['isik'] = 'Form Isi Ringkas hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), underscore(_), dan(&) persen(%) dan at(@)';
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
-
-                                if(!preg_match("/^[a-zA-Z0-9., ]*$/", $nkode)){
-                                    $_SESSION['kodek'] = 'Form Kode Klasifikasi hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,)';
-                                    echo '<script language="javascript">window.history.back();</script>';
-                                } else {
 
                                     if(!preg_match("/^[0-9.-]*$/", $tgl_surat)){
                                         $_SESSION['tgl_suratk'] = 'Form Tanggal Surat hanya boleh mengandung angka dan minus(-)';
@@ -127,7 +122,7 @@
                                             }
                                         }
                                     }
-                                }
+                                
                             }
                         }
                     }
@@ -218,15 +213,15 @@
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">bookmark</i>
-                            <input id="kode" type="text" class="validate" name="kode" required>
-                                <?php
-                                    if(isset($_SESSION['kodek'])){
-                                        $kodek = $_SESSION['kodek'];
-                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$kodek.'</div>';
-                                        unset($_SESSION['kodek']);
-                                    }
-                                ?>
-                            <label for="kode">Kode Klasifikasi</label>
+                                <select id="kode" class="validate" name="kode">
+                                    <option value="">Kode Klasifikasi</option>
+                                    <?php 
+                                        $s = mysqli_query($config, "SELECT kode, nama FROM tbl_klasifikasi");
+                                        while ($row = mysqli_fetch_array($s)) {
+                                            echo '<option value="'.$row['kode'].'">'.$row['kode'].' | '.$row['nama'].'</option>';
+                                        }
+                                    ?>
+                                </select>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">place</i>
@@ -241,21 +236,30 @@
                             <label for="tujuan">Tujuan Surat</label>
                         </div>
                         <div class="input-field col s6">
-                            <i class="material-icons prefix md-prefix">looks_two</i>
-                            <input id="no_surat" type="text" class="validate" name="no_surat" required>
-                                <?php
-                                    if(isset($_SESSION['no_suratk'])){
-                                        $no_suratk = $_SESSION['no_suratk'];
-                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$no_suratk.'</div>';
-                                        unset($_SESSION['no_suratk']);
-                                    }
-                                    if(isset($_SESSION['errDup'])){
-                                        $errDup = $_SESSION['errDup'];
-                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$errDup.'</div>';
-                                        unset($_SESSION['errDup']);
-                                    }
-                                ?>
-                            <label for="no_surat">Nomor Surat</label>
+                            <div class="row">
+                                <div class="col 6">
+                                    <i class="material-icons prefix md-prefix">looks_two</i>
+                                    <!-- <input id="no_surat" type="text" class="validate" name="no_surat" required> -->
+                                    <input type="text" name="no_surat">
+                                        <?php
+                                            if(isset($_SESSION['no_suratk'])){
+                                                $no_suratk = $_SESSION['no_suratk'];
+                                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$no_suratk.'</div>';
+                                                unset($_SESSION['no_suratk']);
+                                            }
+                                            if(isset($_SESSION['errDup'])){
+                                                $errDup = $_SESSION['errDup'];
+                                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$errDup.'</div>';
+                                                unset($_SESSION['errDup']);
+                                            }
+                                        ?>
+                                    <label for="no_surat">Nomor Surat</label>
+                                </div>
+                                <div class="col 6">
+                                    <label style="margin-left:220px;">/SEKRT/DISKOMINFO/<?php echo date('Y'); ?></label>
+                                   
+                                </div>
+                            </div>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">date_range</i>

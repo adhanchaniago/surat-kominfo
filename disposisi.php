@@ -15,6 +15,9 @@
                 case 'edit':
                     include "edit_disposisi.php";
                     break;
+                case 'print':
+                    include "cetak_disposisi.php";
+                    break;
                 case 'del':
                     include "hapus_disposisi.php";
                     break;
@@ -149,9 +152,11 @@
                                                     <td>'.$row['tujuan'].'</td>
                                                     <td>'.$row['isi_disposisi'].'</td>
                                                     <td>'.$row['sifat'].'<br/>'.indoDate($row['batas_waktu']).'</td>
-                                                    <td><a class="btn small blue waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=edit&id_disposisi='.$row['id_disposisi'].'">
-                                                            <i class="material-icons">edit</i> EDIT</a>
-                                                        <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=del&id_disposisi='.$row['id_disposisi'].'"><i class="material-icons">delete</i> DEL</a>
+                                                    <td>
+                                                        <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$id_surat.'" target="_blank">
+                                                            <i class="material-icons">print</i> PRINT</a>
+                                                        <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=del&id_disposisi='.$row['id_disposisi'].'">
+                                                            <i class="material-icons">delete</i> DEL</a>
                                                     </td>
                                             </tr>';
                                             }

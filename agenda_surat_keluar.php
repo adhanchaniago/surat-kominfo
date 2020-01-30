@@ -190,6 +190,24 @@
                                     echo '<tr><td colspan="9"><center><p class="add">Tidak ada agenda surat</p></center></td></tr>';
                                 } echo '
                             </tbody></table>
+                                <div id="lead" style="text-align:right;">
+                                <br><br>
+                                <p>Kepala Instansi</p>
+                                <div style="height: 50px;"></div>';
+                                $query = mysqli_query($config, "SELECT kepsek, nip FROM tbl_instansi");
+                                list($kepsek,$nip) = mysqli_fetch_array($query);
+                                if(!empty($kepsek)){
+                                    echo '<p class="lead">'.$kepsek.'</p>';
+                                } else {
+                                    echo '<p class="lead">Ketua Kominfo</p>';
+                                }
+                                if(!empty($nip)){
+                                    echo '<p>NIP. '.$nip.'</p>';
+                                } else {
+                                    echo '<p>NIP. -</p>';
+                                }
+                                echo '
+                            </div>
                         </div>
                     <div class="jarak2"></div>';
                 }

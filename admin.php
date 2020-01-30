@@ -46,6 +46,12 @@
                 case 'ctk':
                     include "cetak_disposisi.php";
                     break;
+                case 'ctk_tsm':
+                    include "cetak_tsm.php";
+                    break;
+                case 'ctk_tsk':
+                    include "cetak_tsk.php";
+                    break;
                 case 'tsk':
                     include "transaksi_surat_keluar.php";
                     break;
