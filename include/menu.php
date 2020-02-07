@@ -64,6 +64,7 @@
                     }
                 ?>
             </li>
+            <li><a href="?page=surat">Buat Surat</a></li>
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
                     <li>
@@ -145,6 +146,7 @@
             <?php
                 }
             ?>
+            <li><a href="?page=surat">Buat Surat</a></li>
             <li><a class="dropdown-button" href="#!" data-activates="agenda">Buku Agenda <i class="material-icons md-18">arrow_drop_down</i></a></li>
                 <ul id='agenda' class='dropdown-content'>
                     <li><a href="?page=asm">Surat Masuk</a></li>

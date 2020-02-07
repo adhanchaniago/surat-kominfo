@@ -46,6 +46,9 @@
                 case 'ctk':
                     include "cetak_disposisi.php";
                     break;
+                case 'surat':
+                    include "surat.php";
+                    break;
                 case 'ctk_tsm':
                     include "cetak_tsm.php";
                     break;

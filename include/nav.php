@@ -46,6 +46,7 @@
                                 </div>
 							
 						    </li>
+							<!-- <li><a href="<?php echo site_url('admin/buat-surat');?>" class=""><span>Buat Surat</span></a></li> -->
                             <li>
                                 <a href="#subPages2" data-toggle="collapse" class="collapsed"><i class="lnr lnr-arrow-left"></i> <span>Surat Eksternal</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                                 <div id="subPages2" class="collapse ">
@@ -109,6 +110,7 @@
 							</div>
 							
 						</li>
+						<!-- <li><a href="<?php echo site_url('admin/buat-surat');?>" class=""><span>Buat Surat</span></a></li> -->
                        <li>
 							<a href="#subPages2" data-toggle="collapse" class="collapsed"><i class="lnr lnr-arrow-left"></i> <span>Surat Eksternal</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages2" class="collapse ">
