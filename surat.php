@@ -123,7 +123,7 @@
                                         echo $row['kegiatan'].'<br/><br/><strong>Perihal :</strong>';
                                         echo '<strong>'.$row['perihal'].'</strong></td><td>';
                                         echo $row['tujuan'].'</td><td>';
-                                        echo $row['no_surat'].'<br/><hr/>'.$row['tgl_surat'].'</td><td>';
+                                        echo $row['no_surat'].'<br/><hr/>'.indoDate($row['tgl_surat']).'</td><td>';
 
                                             echo '<a class="btn small deep-orange waves-effect waves-light" href="?page=surat&act=edit&id='.$row['id'].'">
                                                     <i class="material-icons">delete</i> DEL</a>
@@ -210,7 +210,7 @@
                                             echo $no.'</td>
                                             <td>'.$row['kegiatan'].'<br/><br/><strong>Perihal :</strong>';
                                                 echo $row['perihal'].'</td>
-                                            <td>'.$row['tujuan'].'</td><td>'.$row['no_surat'].'<br/><hr/>'.$row['tgl_surat'].'</td>
+                                            <td>'.$row['tujuan'].'</td><td>'.$row['no_surat'].'<br/><hr/>'.indoDate($row['tgl_surat']).'</td>
                                             <td>';
 
                                             echo '<a class="btn small deep-orange waves-effect waves-light" href="?page=surat&act=edit&id='.$row['id'].'">

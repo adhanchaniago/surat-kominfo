@@ -62,7 +62,7 @@
         				                <tr>
         				                    <td width="13%">Tanggal Surat</td>
         				                    <td width="1%">:</td>
-        				                    <td width="86%">'.$row['tgl_surat'].'</td>
+        				                    <td width="86%">'.indoDate($row['tgl_surat']).'</td>
         				                </tr>
         				            </tbody>
     				   		    </table>

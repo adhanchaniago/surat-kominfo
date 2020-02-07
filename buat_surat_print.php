@@ -192,7 +192,7 @@
                                 <td id="left" width="15%">Nomor</td>
                                 <td id="left" width="1%">:</td>
                                 <td id="left" width="40%">'.$row['no_surat'].'</td>
-                                <td class="tgh">Marabahan,  '.$row['tgl_surat'].'</td>
+                                <td class="tgh">Marabahan,  '.indoDate($row['tgl_surat']).'</td>
                             </tr>
                             <tr>
                                 <td id="left" width="15%">Lampiran</td>
